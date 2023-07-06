@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zyx.vaccine.mapper.UserRelationPatientMapper">
+
+    <resultMap id="BaseResultMap" type="zyx.vaccine.entity.UserRelationPatient">
+        <id property="relationId" column="relationid" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="patientId" column="patient_id" jdbcType="BIGINT"/>
+            <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,patient_id,patient_name
+    </sql>
+    <delete id="deleteByPatientIdAndUserId" parameterType="zyx.vaccine.entity.UserRelationPatient">
+        delete from User_Relation_Patient where user_Id=#{userId} and patient_Id=#{patientId}
+    </delete>
+    <select id="findPage" resultType="zyx.vaccine.entity.PatientInformation">
+        SELECT
+	patient.*
+FROM
+	`user_relation_patient` relation
+	LEFT JOIN `patient_information` patient ON relation.patient_id = patient.patient_id
+	WHERE
+	relation.user_id =#{userID}
+    </select>
+</mapper>

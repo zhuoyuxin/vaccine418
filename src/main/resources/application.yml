@@ -1,0 +1,43 @@
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath:com/zyx/vaccine/demo/mapper/*.xml
+
+spring:
+  redis:
+    host: localhost # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: # Redis服务器连接密码（默认为空）
+    #邮箱基本配置
+
+
+
+# 自定义redis key
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+    expire:
+      authCode: 120 # 验证码超期时间
+
+
+
+
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+   #设置mapper的路径和实体
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.zyx.vaccine.demo.entity
+
+data:
+  elasticsearch:
+    repositories:
+      enabled: true
+    cluster-nodes: 127.0.0.1:9200 # es的连接地址及端口号
+    cluster-name: elasticsearch # es集群的名称
+
+

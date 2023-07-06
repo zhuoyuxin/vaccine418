@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zyx.vaccine.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="zyx.vaccine.entity.Order">
+            <id property="orderId" column="order_id" jdbcType="INTEGER"/>
+            <result property="patientId" column="patient_id" jdbcType="BIGINT"/>
+            <result property="hospitalId" column="hospital_id" jdbcType="BIGINT"/>
+            <result property="hospitalName" column="hospital_name" jdbcType="VARCHAR"/>
+            <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+            <result property="vaccineId" column="vaccine_id" jdbcType="BIGINT"/>
+            <result property="vaccineName" column="vaccine_name" jdbcType="VARCHAR"/>
+            <result property="appointTime" column="appoint_time" jdbcType="TIMESTAMP"/>
+            <result property="makeOrderTime" column="make_order_time" jdbcType="TIMESTAMP"/>
+        <result property="statue" column="statue" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,patient_id,patient_name,hospital_id,hospital_name
+        vaccine_id,vaccine_name,appoint_time,
+        make_order_time
+    </sql>
+    <select id="findPageByUser" resultType="zyx.vaccine.entity.Order">
+    SELECT `order`.* FROM user_relation_patient relation join `order` on relation.patient_id=order.patient_id
+    where relation.user_id =#{userId}
+
+
+        <if test="patientName!=null and patientName!=''">
+            and `order`.patient_name=#{patientName}
+        </if>
+
+
+
+    </select>
+</mapper>

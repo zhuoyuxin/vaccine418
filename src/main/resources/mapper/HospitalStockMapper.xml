@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zyx.vaccine.mapper.HospitalStockMapper">
+
+    <resultMap id="BaseResultMap" type="zyx.vaccine.entity.HospitalStock">
+        <id property="stockId" column="stock_id" jdbcType="BIGINT"/>
+            <result property="hospitalId" column="hospital_id" jdbcType="BIGINT"/>
+            <result property="vaccineId" column="vaccine_id" jdbcType="BIGINT"/>
+            <result property="hospitalName" column="hospital_name" jdbcType="VARCHAR"/>
+            <result property="vaccineNum" column="vaccine_num" jdbcType="INTEGER"/>
+            <result property="vaccineName" column="vaccine_name" jdbcType="VARCHAR"/>
+            <result property="produceTime" column="produce_time" jdbcType="TIMESTAMP"/>
+            <result property="deadtime" column="deadtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        hospital_id,vaccine_id,hospital_name,
+        vaccine_num,vaccine_name,produce_time,
+        deadtime,stockId
+    </sql>
+    <update id="deductStock">
+        update hospital_stock set vaccine_num=vaccine_num-1 where vaccine_id=#{vaccineId} and
+        hospital_id =#{hospitalId}
+    </update>
+</mapper>

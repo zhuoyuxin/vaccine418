@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zyx.vaccine.mapper.DoctorMapper">
+
+    <resultMap id="BaseResultMap" type="zyx.vaccine.entity.Doctor">
+            <id property="doctorId" column="doctor_id" jdbcType="BIGINT"/>
+            <result property="doctorUsername" column="doctor_username" jdbcType="VARCHAR"/>
+            <result property="doctorPassword" column="doctor_password" jdbcType="VARCHAR"/>
+            <result property="doctorNickname" column="doctor_nickname" jdbcType="VARCHAR"/>
+            <result property="doctorHospitalId" column="doctor_hospital_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        doctor_id,doctor_username,doctor_password,
+        doctor_nickname,doctor_hospital_id
+    </sql>
+</mapper>
